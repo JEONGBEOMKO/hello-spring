@@ -30,7 +30,7 @@ class MemberServiceTest {
     }
 
     @Test
-    void 회원가입() {
+    public void 회원가입() throws Exception {
         //given
         Member member = new Member();
         member.setName("spring");
@@ -39,8 +39,8 @@ class MemberServiceTest {
         Long saveId = memberService.join(member);
 
         //then
-        Member findMember = memberService.findOne(saveId).get();
-        assertThat(member.getName()).isEqualTo(findMember.getName());
+        Member findMember = memberRepository.findById(saveId).get();
+        assertEquals(member.getName(), findMember.getName());
     }
 
     @Test
